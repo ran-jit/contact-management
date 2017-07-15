@@ -6,4 +6,4 @@ Google Docs has always been a good all-round tool for creating and managing the 
 
 #### Contact management system is available in below location
   
-    https://github.com/ran-jit/ContactManagementSystem/wiki
+    https://github.com/ran-jit/contact-management-system/wiki
