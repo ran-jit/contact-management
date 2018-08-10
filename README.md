@@ -4,6 +4,7 @@ CMS is to send email from web page contact-us form details (i.e., name, email, c
 
 Google Docs has always been a good all-round tool for creating and managing the documents. The system is to record mail contents and send emails using Google Sheets and Golang script.
 
-#### Contact management system is available in below location
-  
-    https://github.com/ran-jit/contact-management-system/wiki
+more details.. https://github.com/ran-jit/contact-management-system/wiki
+
+-----------------------------------------
+Ranjith Manickam | www.ranmanic.in @ 2018
