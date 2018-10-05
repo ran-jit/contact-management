@@ -1,58 +1,49 @@
 var SUBJECT = "Contact US :: ranmanic.in";
 var TO_ADDRESS = "ranjith@ranmanic.in";
+var SHEET_NAME = "responses";
 
-// For enabling email cc address, uncomment the below line and "MailApp.sendEmail" cc parameter.
-// var CC_ADDRESS = "ranjith@ranmanic.in";
+// For email cc, Uncomment the below line and "MailApp.sendEmail" cc parameter.
+//var CC_ADDRESS = "ranjith@ranmanic.in";
 
-/**
- * API to accept POST requests.
- */
-function doPost(e) {
+/** POST */
+function doPost(jsonData) {
   try {
-    // to record input details in spread sheet "responses"
-    recordData(e);
+    recordData(jsonData);
 
-    var mailData = e.parameters;
     MailApp.sendEmail({
       to: TO_ADDRESS,
       // cc: CC_ADDRESS,
       subject: SUBJECT,
-      htmlBody: formatMailBody(mailData)
+      htmlBody: formatMailBody(jsonData.parameters)
     });
 
-    // return json success results
     return ContentService
-          .createTextOutput(
-            JSON.stringify({"result":"success",
-                            "data": JSON.stringify(e.parameters) }))
+          .createTextOutput(JSON.stringify({"result":"success",
+                            "data": JSON.stringify(jsonData.parameters) }))
           .setMimeType(ContentService.MimeType.JSON);
 
   } catch(error) {
     return ContentService
-          .createTextOutput(JSON.stringify({"result":"error", "error": e}))
+          .createTextOutput(JSON.stringify({"result":"error", 
+                                            "data": JSON.stringify(jsonData.parameters)}))
           .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
-/**
- * method to split the keys and values from the input object.
- */
-function formatMailBody(obj) {
+/** To format email content */
+function formatMailBody(jsonData) {
   var result = "";
-  for (var key in obj) { // loop over the object passed to the function
-    result += "<h4 style='text-transform: capitalize; margin-bottom: 0'>" + key + "</h4><div>" + obj[key] + "</div>";
+  for (var key in jsonData) {
+    result += "<h4 style='text-transform: capitalize; margin-bottom: 0'>" + key + "</h4><div>" + jsonData[key] + "</div>";
   }
   return result;
 }
 
-/**
- * Record the input details in spread sheet
- * note: sheet name - "responses"
- */
-function recordData(e) {
+/** To record json data to sheet */
+function recordData(jsonData) {
   try {
     var doc = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = doc.getSheetByName('responses');
+    var sheet = doc.getSheetByName(SHEET_NAME);
     var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
     var nextRow = sheet.getLastRow() + 1;
 
@@ -60,15 +51,13 @@ function recordData(e) {
     var row = [ new Date() ];
     for (var i = 1; i < headers.length; i++) {
       if(headers[i].length > 0) {
-        row.push(e.parameter[headers[i]]);
+        row.push(jsonData.parameter[headers[i]]);
       }
     }
     sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
-  }
-  catch(error) {
-    Logger.log(e);
-  }
-  finally {
+  } catch(error) {
+    Logger.log(error);
+  } finally {
     return;
   }
 }
