@@ -4,7 +4,7 @@ Using Google Sheets, now you can send email from your web page contact-us form. 
 
 Google Docs has always been a secure tool for creating and managing documents over the internet. So here we expose API and record details using Google Sheets script engine.
 
-more details.. [contact-management-system/wiki](https://sites.google.com/site/ranmanicwikii/opensource/contact-management-system)
+more details.. [contact-management-system/wiki](https://blog.ranmanic.in/opensource/contact-management-system)
 
 -----------------------------------------
 Ranjith Manickam | www.ranmanic.in @ 2019
