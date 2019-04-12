@@ -1,8 +1,8 @@
 # Contact Management System
 
-CMS is to send email from web page contact-us form details (i.e., name, email, contact number, etc..). Now a days, we've lot of contact-us forms available in open source market. But the advantage of this system is to integrate our own contact form to send emails via Google Docs using Golang.
+Using Google Sheets, now you can send email from your web page contact-us form. Nowadays, we have a lot of open source forms available on the internet. But the advantage of this is simple and secure (Here we're not sharing our contact-us form details to anyone).
 
-Google Docs has always been a good all-round tool for creating and managing the documents. The system is to record mail contents and send emails using Google Sheets and Golang script.
+Google Docs has always been a secure tool for creating and managing documents over the internet. So here we expose API and record details using Google Sheets script engine.
 
 more details.. [contact-management-system/wiki](https://sites.google.com/site/ranmanicwikii/opensource/contact-management-system)
 
